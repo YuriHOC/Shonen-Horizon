@@ -153,17 +153,18 @@ function updateTopicDividers() {
       return;
     }
 
-    const headerOffset = window.innerWidth <= 720 ? -4 : -6;
-    const stickyTop = window.scrollY + parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) + headerOffset;
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + section.offsetHeight;
-    const releasePoint = sectionBottom - divider.offsetHeight - 120;
-    const shouldFix = stickyTop >= sectionTop && stickyTop < releasePoint;
-    const shouldRelease = stickyTop >= releasePoint;
+    const rect = divider.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-height"));
+    const fadeIn = clamp((viewportHeight - rect.top) / 180, 0, 1);
+    const fadeOut = clamp((rect.bottom - headerHeight) / 180, 0, 1);
+    const opacity = fadeIn * fadeOut;
+    const drift = (1 - opacity) * -8;
 
-    section.classList.toggle("is-topic-fixed", shouldFix);
-    divider.classList.toggle("is-fixed", shouldFix);
-    divider.classList.toggle("is-released", shouldRelease);
+    divider.style.setProperty("--divider-opacity", opacity.toFixed(3));
+    divider.style.setProperty("--divider-drift", `${drift.toFixed(2)}px`);
+    section.classList.remove("is-topic-fixed");
+    divider.classList.remove("is-fixed", "is-released");
   });
 }
 
@@ -171,17 +172,21 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+function smoothStep(value) {
+  return value * value * (3 - (2 * value));
+}
+
 function updateRevealCards() {
   revealCards.forEach((card) => {
     const rect = card.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const enterStart = viewportHeight * 1.28;
-    const enterEnd = viewportHeight * 0.72;
-    const exitStart = Math.min(-72, viewportHeight - rect.height - 96);
-    const exitEnd = -rect.height * 1.12;
+    const enterStart = viewportHeight * 0.84;
+    const enterEnd = viewportHeight * 0.46;
+    const exitStart = -rect.height * 0.68;
+    const exitEnd = -rect.height * 1.08;
 
-    const enterProgress = clamp((enterStart - rect.top) / (enterStart - enterEnd), 0, 1);
-    const exitProgress = clamp((exitStart - rect.top) / (exitStart - exitEnd), 0, 1);
+    const enterProgress = smoothStep(clamp((enterStart - rect.top) / (enterStart - enterEnd), 0, 1));
+    const exitProgress = smoothStep(clamp((exitStart - rect.top) / (exitStart - exitEnd), 0, 1));
     const revealProgress = enterProgress * (1 - exitProgress);
     const slideX = enterProgress < 1
       ? -110 + (enterProgress * 110)
