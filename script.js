@@ -5,6 +5,9 @@ const lightboxTitle = document.querySelector(".lightbox-title");
 const lightboxClose = document.querySelector(".lightbox-close");
 const wallpaperButtons = document.querySelectorAll(".wallpaper-open-button");
 const downloadButtons = document.querySelectorAll(".download-button");
+const wallpaperSection = document.querySelector(".wallpapers-section");
+const wallpaperFormatTabs = document.querySelectorAll("[data-wallpaper-filter]");
+const wallpaperCards = document.querySelectorAll("[data-wallpaper-format]");
 const socialFab = document.querySelector(".social-fab");
 const socialFabButton = document.querySelector(".social-fab-button");
 const heroLogo = document.querySelector(".hero-logo-wrap");
@@ -112,6 +115,33 @@ downloadButtons.forEach((link) => {
   });
 });
 
+function setWallpaperFormat(format) {
+  if (!wallpaperSection) {
+    return;
+  }
+
+  wallpaperSection.dataset.activeFormat = format;
+
+  wallpaperFormatTabs.forEach((tab) => {
+    const isActive = tab.dataset.wallpaperFilter === format;
+
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-pressed", String(isActive));
+  });
+
+  wallpaperCards.forEach((card) => {
+    const shouldShow = card.dataset.wallpaperFormat === format;
+
+    card.hidden = !shouldShow;
+  });
+}
+
+wallpaperFormatTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    setWallpaperFormat(tab.dataset.wallpaperFilter);
+  });
+});
+
 futureLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
@@ -200,6 +230,7 @@ function updateRevealCards() {
 // Implementação futura: substituir por roteamento, filtros e download real.
 // Área futura: conectar cards a arquivos reais em assets/images.
 window.addEventListener("load", setActiveLink);
+window.addEventListener("load", () => setWallpaperFormat(wallpaperSection?.dataset.activeFormat || "desktop"));
 window.addEventListener("load", updateHeroLogoScroll);
 window.addEventListener("load", updateTopicDividers);
 window.addEventListener("load", updateRevealCards);

@@ -1117,10 +1117,70 @@ h1 {
   text-shadow: 0 0 42px rgba(255, 209, 102, 0.13);
 }
 
+.wallpaper-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 22px;
+}
+
+.wallpaper-format-tabs {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(112px, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(8, 7, 10, 0.62);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.2);
+}
+
+.wallpaper-format-tab {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 16px;
+  color: rgba(245, 247, 251, 0.68);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.wallpaper-format-tab span {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  color: rgba(245, 247, 251, 0.74);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+}
+
+.wallpaper-format-tab:hover,
+.wallpaper-format-tab.is-active {
+  color: var(--text);
+  background: rgba(255, 248, 235, 0.1);
+}
+
+.wallpaper-format-tab.is-active {
+  box-shadow: inset 0 0 0 1px rgba(255, 209, 102, 0.22), 0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
 .wallpaper-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+.wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .wallpaper-card {
@@ -1142,12 +1202,19 @@ h1 {
 .wallpaper-preview {
   position: relative;
   display: grid;
-  aspect-ratio: 16 / 10;
-  height: clamp(220px, 22vw, 260px);
+  aspect-ratio: 16 / 9;
   place-items: end start;
   overflow: hidden;
   padding: 20px;
   isolation: isolate;
+}
+
+.wallpaper-card--desktop .wallpaper-preview {
+  aspect-ratio: 16 / 9;
+}
+
+.wallpaper-card--mobile .wallpaper-preview {
+  aspect-ratio: 9 / 14;
 }
 
 .wallpaper-preview-image {
@@ -1194,7 +1261,7 @@ h1 {
 .wallpaper-open-button {
   --preview-offset-x: 0px;
   position: absolute;
-  inset: 14px;
+  inset: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1203,6 +1270,14 @@ h1 {
   background: transparent;
   cursor: zoom-in;
   overflow: hidden;
+}
+
+.wallpaper-card--desktop .wallpaper-open-button {
+  inset: 18px;
+}
+
+.wallpaper-card--mobile .wallpaper-open-button {
+  inset: 18px 30px;
 }
 
 .wallpaper-image {
@@ -1217,8 +1292,8 @@ h1 {
   transition: transform 180ms ease, filter 180ms ease;
 }
 
-.preview-shift-left {
-  --preview-offset-x: -28px;
+.wallpaper-card--desktop .wallpaper-image {
+  object-fit: cover;
 }
 
 .wallpaper-open-button:hover .wallpaper-image {
@@ -1643,12 +1718,12 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .values-grid {
+  .wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .wallpaper-preview {
-    height: 220px;
+  .values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1702,7 +1777,20 @@ h1 {
     padding-inline: 18px;
   }
 
+  .wallpaper-toolbar {
+    justify-content: stretch;
+    margin-top: -2px;
+  }
+
+  .wallpaper-format-tabs {
+    width: 100%;
+  }
+
   .wallpaper-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2038,16 +2126,17 @@ h1 {
     gap: 14px;
   }
 
-  .wallpaper-preview {
-    height: clamp(210px, 62vw, 280px);
+  .wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
+    grid-template-columns: 1fr;
   }
 
   .wallpaper-open-button {
     inset: 10px;
   }
 
-  .preview-shift-left {
-    --preview-offset-x: -18px;
+  .wallpaper-card--desktop .wallpaper-open-button,
+  .wallpaper-card--mobile .wallpaper-open-button {
+    inset: 12px;
   }
 
   .card-content {
@@ -2117,10 +2206,6 @@ h1 {
 
   .wallpapers-section {
     padding-inline: 10px;
-  }
-
-  .wallpaper-preview {
-    height: 218px;
   }
 }
 

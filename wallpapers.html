@@ -26,7 +26,7 @@
       </header>
 
       <main>
-        <section class="wallpapers-section page-section" id="wallpapers">
+        <section class="wallpapers-section page-section" id="wallpapers" data-active-format="desktop">
           <div class="section-heading">
             <p class="eyebrow">Colecao inicial</p>
             <h1>Wallpapers</h1>
@@ -36,8 +36,34 @@
             </p>
           </div>
 
+          <div class="wallpaper-toolbar" aria-label="Escolher formato de wallpaper">
+            <div class="wallpaper-format-tabs" aria-label="Formatos disponiveis">
+              <button
+                class="wallpaper-format-tab is-active"
+                type="button"
+                aria-pressed="true"
+                data-wallpaper-filter="desktop"
+              >
+                Desktop
+                <span>3</span>
+              </button>
+              <button
+                class="wallpaper-format-tab"
+                type="button"
+                aria-pressed="false"
+                data-wallpaper-filter="mobile"
+              >
+                Mobile
+                <span>4</span>
+              </button>
+            </div>
+          </div>
+
           <div class="wallpaper-grid" aria-label="Wallpapers em destaque">
-            <article class="wallpaper-card">
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
                   class="wallpaper-open-button"
@@ -59,73 +85,10 @@
               </div>
             </article>
 
-            <article class="wallpaper-card">
-              <div class="wallpaper-preview wallpaper-preview-image">
-                <button
-                  class="wallpaper-open-button preview-shift-left"
-                  type="button"
-                  data-full-image="assets/img/wallp/SasukeAndVegeta.png"
-                  data-image-title="Sasuke & Vegeta"
-                  aria-label="Visualizar wallpaper Sasuke & Vegeta"
-                >
-                  <img
-                    class="wallpaper-image"
-                    src="assets/img/wallp/SasukeAndVegeta.png"
-                    alt="Wallpaper Sasuke and Vegeta"
-                  />
-                </button>
-              </div>
-              <div class="card-content">
-                <h2>Sasuke & Vegeta</h2>
-                <a class="download-button" href="assets/img/wallp/SasukeAndVegeta.png" download="SasukeAndVegeta.png">Download</a>
-              </div>
-            </article>
-
-            <article class="wallpaper-card">
-              <div class="wallpaper-preview wallpaper-preview-image">
-                <button
-                  class="wallpaper-open-button preview-shift-left"
-                  type="button"
-                  data-full-image="assets/img/wallp/GokuBlue.png"
-                  data-image-title="Goku Blue"
-                  aria-label="Visualizar wallpaper Goku Blue"
-                >
-                  <img
-                    class="wallpaper-image"
-                    src="assets/img/wallp/GokuBlue.png"
-                    alt="Wallpaper Goku Blue"
-                  />
-                </button>
-              </div>
-              <div class="card-content">
-                <h2>Goku Blue</h2>
-                <a class="download-button" href="assets/img/wallp/GokuBlue.png" download="GokuBlue.png">Download</a>
-              </div>
-            </article>
-
-            <article class="wallpaper-card">
-              <div class="wallpaper-preview wallpaper-preview-image">
-                <button
-                  class="wallpaper-open-button preview-shift-left"
-                  type="button"
-                  data-full-image="assets/img/wallp/KenKaneki.png"
-                  data-image-title="Ken Kaneki"
-                  aria-label="Visualizar wallpaper Ken Kaneki"
-                >
-                  <img
-                    class="wallpaper-image"
-                    src="assets/img/wallp/KenKaneki.png"
-                    alt="Wallpaper Ken Kaneki"
-                  />
-                </button>
-              </div>
-              <div class="card-content">
-                <h2>Ken Kaneki</h2>
-                <a class="download-button" href="assets/img/wallp/KenKaneki.png" download="KenKaneki.png">Download</a>
-              </div>
-            </article>
-
-            <article class="wallpaper-card">
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
                   class="wallpaper-open-button"
@@ -147,10 +110,117 @@
               </div>
             </article>
 
-            <article class="wallpaper-card">
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
-                  class="wallpaper-open-button preview-shift-left"
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/Luffy.png"
+                  data-image-title="Luffy"
+                  aria-label="Visualizar wallpaper Luffy"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/Luffy.png"
+                    alt="Wallpaper Luffy"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Luffy</h2>
+                <a class="download-button" href="assets/img/wallp/Luffy.png" download="Luffy.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--mobile"
+              data-wallpaper-format="mobile"
+              hidden
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/SasukeAndVegeta.png"
+                  data-image-title="Sasuke & Vegeta"
+                  aria-label="Visualizar wallpaper Sasuke & Vegeta"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/SasukeAndVegeta.png"
+                    alt="Wallpaper Sasuke and Vegeta"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Sasuke & Vegeta</h2>
+                <a class="download-button" href="assets/img/wallp/SasukeAndVegeta.png" download="SasukeAndVegeta.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--mobile"
+              data-wallpaper-format="mobile"
+              hidden
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/GokuBlue.png"
+                  data-image-title="Goku Blue"
+                  aria-label="Visualizar wallpaper Goku Blue"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/GokuBlue.png"
+                    alt="Wallpaper Goku Blue"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Goku Blue</h2>
+                <a class="download-button" href="assets/img/wallp/GokuBlue.png" download="GokuBlue.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--mobile"
+              data-wallpaper-format="mobile"
+              hidden
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/KenKaneki.png"
+                  data-image-title="Ken Kaneki"
+                  aria-label="Visualizar wallpaper Ken Kaneki"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/KenKaneki.png"
+                    alt="Wallpaper Ken Kaneki"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Ken Kaneki</h2>
+                <a class="download-button" href="assets/img/wallp/KenKaneki.png" download="KenKaneki.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--mobile"
+              data-wallpaper-format="mobile"
+              hidden
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
                   type="button"
                   data-full-image="assets/img/wallp/SatoruGojou.png"
                   data-image-title="Satoru Gojou"
