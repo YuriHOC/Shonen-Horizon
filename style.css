@@ -1256,8 +1256,12 @@ h1 {
 .post-card:hover,
 .category-card:hover {
   border-color: rgba(255, 209, 102, 0.34);
-  background: var(--panel-strong);
   transform: translateY(-5px);
+}
+
+.post-card:hover,
+.category-card:hover {
+  background: var(--panel-strong);
 }
 
 .featured-card {
@@ -1454,6 +1458,15 @@ h1 {
     url("assets/img/NoticeBlog/JujutsuKaisenConfirma4.png");
 }
 
+.article-hero--the-one-piece {
+  background:
+    linear-gradient(180deg, rgba(8, 7, 9, 0.1), rgba(8, 7, 9, 0.96)),
+    linear-gradient(90deg, rgba(8, 7, 9, 0.95), rgba(8, 7, 9, 0.32)),
+    url("assets/img/NoticeBlog/TheOnePieceMostrou.png");
+  background-position: center;
+  background-size: cover;
+}
+
 .article-hero::after {
   position: absolute;
   inset: 0;
@@ -1486,14 +1499,36 @@ h1 {
 
 .article-back-link {
   display: inline-flex;
-  margin-bottom: 18px;
-  color: rgba(255, 248, 235, 0.72);
-  font-size: 0.84rem;
+  width: max-content;
+  max-width: 100%;
+  min-height: 36px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 248, 235, 0.16);
+  border-radius: 999px;
+  padding: 0 13px;
+  color: rgba(255, 248, 235, 0.86);
+  background: rgba(8, 7, 9, 0.46);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+  font-size: 0.82rem;
   font-weight: 900;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.article-back-link::before {
+  content: "←";
+  color: var(--accent);
+  font-size: 1.05rem;
+  line-height: 1;
 }
 
 .article-back-link:hover {
+  border-color: rgba(255, 209, 102, 0.38);
   color: var(--accent);
+  background: rgba(255, 209, 102, 0.1);
+  transform: translateY(-2px);
 }
 
 .article-hero h1 {
