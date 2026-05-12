@@ -14,6 +14,7 @@
     <div class="page-shell">
       <header class="site-header" aria-label="Navegacao principal">
         <a class="brand" href="index.html" aria-label="Shonen Horizon - Home">
+          <span class="brand-mark" aria-hidden="true"></span>
           <span class="brand-name">Shonen Horizon</span>
         </a>
 
@@ -23,29 +24,181 @@
           <a class="nav-link" href="wallpapers.html" data-page="wallpapers">Wallpapers</a>
           <a class="nav-link" href="sobre.html" data-page="sobre">Sobre</a>
         </nav>
+        <a class="header-cta" href="#posts">Explorar Blog</a>
       </header>
 
       <main>
-        <section class="hero-section section-panel" id="home">
-          <div class="hero-atmosphere" aria-hidden="true"></div>
-          <div class="hero-content">
-            <p class="eyebrow">A Melhor Central Geek tem nome!</p>
-            <div class="hero-logo-wrap" aria-label="Shonen Horizon">
-              <img
-                class="hero-logo"
-                src="assets/img/Marca/Letreiro.png"
-                alt="Shonen Horizon"
-              />
+        <section class="blog-hero section-panel" id="home">
+          <div class="blog-hero-media" aria-hidden="true"></div>
+          <div class="blog-hero-content">
+            <p class="blog-badge">Blog oficial de anime, games e cultura geek</p>
+            <h1>O horizonte onde anime vira assunto de verdade.</h1>
+            <p>
+              Notícias, teorias, wallpapers, gameplays e análises com energia
+              shonen. Uma home feita para descobrir o que está em alta e para
+              acompanhar a evolução da Shonen Horizon como portal.
+            </p>
+            <div class="blog-hero-actions">
+              <a class="btn-primary" href="#destaques">Ver destaques</a>
+              <a class="btn-secondary" href="wallpapers.html">Baixar wallpapers</a>
             </div>
-            <h1 class="sr-only">Shonen Horizon</h1>
-            <p class="hero-copy">
-              Um espaço para quem ama anime, estética shonen e imagens épicas,
-              feito para levar as melhores notícias dos animes para vocês. Além
-              de conteúdos incríveis, como nossas páginas e blog!
-              <a class="inline-cta" href="sobre.html">Venha conhecer</a>
+          </div>
+        </section>
+
+        <section class="blog-section" id="destaques">
+          <div class="blog-section-title">
+            <div>
+              <span class="card-tag">Radar shonen</span>
+              <h2>Matérias principais</h2>
+            </div>
+            <p>
+              Um painel inicial com notícias reais e espaço para a voz editorial
+              da Shonen Horizon crescer.
             </p>
           </div>
-          <!-- Implementação futura: incluir destaque de colecao, busca ou filtros. -->
+
+          <div class="featured-grid">
+            <a
+              class="featured-card"
+              href="Noticias/noticia-elbaph.html"
+            >
+              <span class="card-tag">One Piece</span>
+              <h3>Elbaph chegou: o arco dos gigantes abre uma nova fase para o bando.</h3>
+              <p>
+                A estreia em abril de 2026 marca o retorno da tripulação depois
+                de Egghead e reforça a nova cadência anual do anime.
+              </p>
+              <span class="source-line">Ler matéria completa</span>
+            </a>
+
+            <div class="side-list">
+              <a
+                class="side-card side-card--chainsaw"
+                href="Noticias/noticia-chainsaw-man-reze.html"
+              >
+                <span class="card-tag">Cinema anime</span>
+                <h3>Chainsaw Man: Reze Arc já tem janela de streaming.</h3>
+                <p>
+                  O filme chegou à Crunchyroll em 30 de abril de 2026, abrindo
+                  espaço para análise visual, hype e recortes cinematográficos.
+                </p>
+              </a>
+
+              <a
+                class="side-card side-card--jujutsu"
+                href="Noticias/noticia-jujutsu-kaisen-temporada-4.html"
+              >
+                <span class="card-tag">Culling Game</span>
+                <h3>Jujutsu Kaisen confirma 4ª temporada após o final da S3.</h3>
+                <p>
+                  A continuação vai adaptar “Migração à Extinção Parte 2”,
+                  mantendo o arco Culling Game no centro da história.
+                </p>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="blog-section" id="categorias">
+          <div class="blog-section-title">
+            <div>
+              <span class="card-tag">Editorias</span>
+              <h2>Categorias do blog</h2>
+            </div>
+          </div>
+
+          <div class="categories">
+            <a href="#posts" class="category-card">
+              <strong>Novidades</strong>
+              <span>Lançamentos, trailers, temporadas e anúncios oficiais.</span>
+            </a>
+            <a href="#posts" class="category-card">
+              <strong>Análises</strong>
+              <span>Leitura de arcos, personagens, direção e impacto cultural.</span>
+            </a>
+            <a href="#posts" class="category-card">
+              <strong>Games</strong>
+              <span>Gameplays, cortes, builds e momentos com estética anime.</span>
+            </a>
+            <a href="wallpapers.html" class="category-card">
+              <strong>Wallpapers</strong>
+              <span>Artes exclusivas para desktop e mobile.</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="blog-section" id="posts">
+          <div class="blog-section-title">
+            <div>
+              <span class="card-tag">Últimos posts</span>
+              <h2>Conteúdos recentes</h2>
+            </div>
+            <p>
+              Chamadas prontas para virar posts completos quando o blog ganhar
+              publicação interna.
+            </p>
+          </div>
+
+          <div class="posts-grid">
+            <a
+              class="post-card"
+              href="Noticias/noticia-boku-no-hero-more.html"
+            >
+              <img src="assets/img/NoticeBlog/EpisodioExtraDeku.png" alt="Arte do episodio extra de Deku" />
+              <div class="post-content">
+                <div class="meta">Anime • My Hero Academia • 4 min</div>
+                <h3>O episódio extra “More” fecha a jornada de Deku com tom de epílogo.</h3>
+                <p>
+                  Uma boa pauta para falar sobre legado, passagem de tempo e o
+                  que fica depois do fim de uma grande série shonen.
+                </p>
+              </div>
+            </a>
+
+            <a
+              class="post-card"
+              href="https://www.crunchyroll.com/news/latest/2026/4/7/the-one-piece-anime-special-look-video"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="assets/img/NoticeBlog/TheOnePieceMostrou.png" alt="Arte de THE ONE PIECE" />
+              <div class="post-content">
+                <div class="meta">Anime • One Piece • 5 min</div>
+                <h3>THE ONE PIECE mostrou novo olhar para a adaptação.</h3>
+                <p>
+                  O remake segue como uma das apostas mais interessantes para
+                  revisitar East Blue com outra linguagem visual.
+                </p>
+              </div>
+            </a>
+
+            <a
+              class="post-card"
+              href="Noticias/noticia-jujutsu-kaisen-culling-game-parte-2.html"
+            >
+              <img src="assets/img/NoticeBlog/JuJutsuKaisenCullingGame.png" alt="Arte de Jujutsu Kaisen Culling Game" />
+              <div class="post-content">
+                <div class="meta">Anime • Culling Game • 5 min</div>
+                <h3>Jujutsu Kaisen segue para a Parte 2 do Culling Game.</h3>
+                <p>
+                  O jogo mortal deixa de ser apenas sobrevivência e se transforma
+                  em uma guerra estratégica pelo futuro do mundo jujutsu.
+                </p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="blog-section blog-wallpapers-callout">
+          <div>
+            <span class="card-tag">Exclusivo Shonen Horizon</span>
+            <h2>Entre uma notícia e outra, leve o visual do universo com você.</h2>
+            <p>
+              A área de wallpapers já separa formatos Desktop e Mobile, com
+              cards pensados para cada proporção.
+            </p>
+          </div>
+          <a class="btn-primary" href="wallpapers.html">Abrir wallpapers</a>
         </section>
       </main>
 

@@ -26,6 +26,10 @@ function getCurrentPage() {
     return "sobre";
   }
 
+  if (page.startsWith("noticia-")) {
+    return "home";
+  }
+
   return "home";
 }
 
