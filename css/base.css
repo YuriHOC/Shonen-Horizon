@@ -1,0 +1,218 @@
+/* =============================================
+   BASE — variáveis, reset, body, tipografia, keyframes
+   Carregado em todas as páginas
+   ============================================= */
+
+:root {
+  --bg: #080709;
+  --bg-soft: #121018;
+  --panel: rgba(255, 255, 255, 0.055);
+  --panel-strong: rgba(255, 255, 255, 0.09);
+  --text: #fff8eb;
+  --muted: #b7aa9d;
+  --line: rgba(255, 248, 235, 0.13);
+  --accent: #ffd166;
+  --accent-warm: #ff4d6d;
+  --accent-cool: #78dcca;
+  --shadow: rgba(0, 0, 0, 0.42);
+  --header-height: 76px;
+  --hero-logo-scroll: 0;
+  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text);
+  background:
+    radial-gradient(circle at 72% 18%, rgba(255, 209, 102, 0.15), transparent 24rem),
+    radial-gradient(circle at 18% 78%, rgba(255, 77, 109, 0.13), transparent 25rem),
+    linear-gradient(135deg, #070609 0%, #141019 48%, #09070a 100%);
+  overflow-x: hidden;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  content: "";
+  background-image:
+    radial-gradient(circle, rgba(255, 248, 235, 0.12) 1px, transparent 1.4px),
+    linear-gradient(135deg, transparent 0 46%, rgba(255, 248, 235, 0.035) 46% 47%, transparent 47% 100%);
+  background-position: 0 0, center;
+  background-size: 18px 18px, 180px 180px;
+  mask-image: linear-gradient(to bottom, black, transparent 76%);
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(180deg, rgba(8, 7, 9, 0.2), rgba(8, 7, 9, 0.82));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+main {
+  min-width: 0;
+}
+
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
+}
+
+h1 {
+  margin-bottom: 22px;
+  font-size: clamp(3rem, 8vw, 7.8rem);
+  line-height: 0.95;
+  text-shadow: 0 0 40px rgba(255, 209, 102, 0.14);
+}
+
+/* =============================================
+   KEYFRAMES
+   ============================================= */
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.35deg);
+  }
+
+  50% {
+    transform: translate3d(0, 10px, 0) rotate(0.35deg);
+  }
+}
+
+@keyframes particleDrift {
+  from {
+    background-position: 0 0, 28px 22px;
+  }
+
+  to {
+    background-position: 46px 46px, 86px 80px;
+  }
+}
+
+@keyframes twitchPulse {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.08);
+  }
+}
+
+/* =============================================
+   RESPONSIVE — variáveis e tipografia global
+   ============================================= */
+
+@media (max-width: 720px) {
+  :root {
+    --header-height: 172px;
+  }
+
+  h1 {
+    font-size: clamp(2.45rem, 14vw, 4.6rem);
+    line-height: 0.98;
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 18vw, 5rem);
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --header-height: 188px;
+  }
+
+  h1 {
+    font-size: clamp(2.15rem, 13vw, 3.2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

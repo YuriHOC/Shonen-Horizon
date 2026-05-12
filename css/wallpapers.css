@@ -1,0 +1,461 @@
+/* =============================================
+   WALLPAPERS — wallpapers.html
+   Galeria, toolbar, cards, lightbox
+   ============================================= */
+
+.wallpapers-section {
+  padding: calc(var(--header-height) + 34px) max(24px, calc((100vw - 1120px) / 2)) 96px;
+}
+
+.section-heading {
+  margin-bottom: 34px;
+}
+
+.section-heading h1,
+.section-heading h2 {
+  margin-bottom: 0;
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
+  line-height: 1;
+}
+
+.section-heading h1 {
+  text-shadow: 0 0 42px rgba(255, 209, 102, 0.13);
+}
+
+/* =============================================
+   TOOLBAR DE FILTRO
+   ============================================= */
+
+.wallpaper-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 22px;
+}
+
+.wallpaper-format-tabs {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(112px, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(8, 7, 10, 0.62);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.2);
+}
+
+.wallpaper-format-tab {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 16px;
+  color: rgba(245, 247, 251, 0.68);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.wallpaper-format-tab span {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  color: rgba(245, 247, 251, 0.74);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+}
+
+.wallpaper-format-tab:hover,
+.wallpaper-format-tab.is-active {
+  color: var(--text);
+  background: rgba(255, 248, 235, 0.1);
+}
+
+.wallpaper-format-tab.is-active {
+  box-shadow: inset 0 0 0 1px rgba(255, 209, 102, 0.22), 0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+/* =============================================
+   GRID E CARDS DE WALLPAPER
+   ============================================= */
+
+.wallpaper-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wallpaper-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.wallpaper-card:hover {
+  border-color: rgba(125, 226, 255, 0.28);
+  background: var(--panel-strong);
+  transform: translateY(-5px);
+}
+
+/* =============================================
+   PREVIEW DO WALLPAPER
+   ============================================= */
+
+.wallpaper-preview {
+  position: relative;
+  display: grid;
+  aspect-ratio: 16 / 9;
+  place-items: end start;
+  overflow: hidden;
+  padding: 20px;
+  isolation: isolate;
+}
+
+.wallpaper-card--desktop .wallpaper-preview {
+  aspect-ratio: 16 / 9;
+}
+
+.wallpaper-card--mobile .wallpaper-preview {
+  aspect-ratio: 9 / 14;
+}
+
+.wallpaper-preview-image {
+  padding: 0;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(255, 248, 235, 0.035), rgba(255, 248, 235, 0)),
+    rgba(7, 6, 9, 0.38);
+}
+
+.wallpaper-preview-image::before,
+.wallpaper-preview-image::after {
+  display: none;
+}
+
+.wallpaper-preview::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 38%),
+    radial-gradient(circle at 78% 24%, rgba(255, 255, 255, 0.2), transparent 22%);
+  opacity: 0.7;
+}
+
+.wallpaper-preview::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  content: "";
+  background: linear-gradient(to top, rgba(3, 5, 9, 0.72), transparent);
+}
+
+.wallpaper-preview span {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+/* =============================================
+   BOTÃO DE ABRIR / IMAGEM
+   ============================================= */
+
+.wallpaper-open-button {
+  --preview-offset-x: 0px;
+  position: absolute;
+  inset: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.wallpaper-card--desktop .wallpaper-open-button {
+  inset: 18px;
+}
+
+.wallpaper-card--mobile .wallpaper-open-button {
+  inset: 18px 30px;
+}
+
+.wallpaper-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  transform: translateX(var(--preview-offset-x));
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.wallpaper-card--desktop .wallpaper-image {
+  object-fit: cover;
+}
+
+.wallpaper-open-button:hover .wallpaper-image {
+  filter: brightness(1.06);
+  transform: translateX(var(--preview-offset-x)) scale(1.015);
+}
+
+/* =============================================
+   TEMAS DE PREVIEW
+   ============================================= */
+
+.preview-aurora {
+  background: linear-gradient(145deg, #0a1020, #17495e 52%, #74d6d8);
+}
+
+.preview-crimson {
+  background: linear-gradient(145deg, #10080e, #51223b 55%, #ff6f91);
+}
+
+.preview-moon {
+  background: linear-gradient(145deg, #090d18, #273550 54%, #c9d6ff);
+}
+
+.preview-ember {
+  background: linear-gradient(145deg, #0d0b09, #472e2a 56%, #ffb56b);
+}
+
+.preview-horizon {
+  background: linear-gradient(145deg, #071311, #1f4b48 50%, #9fffd1);
+}
+
+.preview-void {
+  background: linear-gradient(145deg, #09070f, #2d274a 55%, #8d7dff);
+}
+
+/* =============================================
+   CARD CONTENT (nome + botão de download)
+   ============================================= */
+
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+}
+
+.card-content h2,
+.card-content h3 {
+  margin-bottom: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.card-content button,
+.download-button {
+  display: inline-flex;
+  min-width: 108px;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0 14px;
+  color: rgba(245, 247, 251, 0.92);
+  background: rgba(255, 248, 235, 0.065);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.card-content button:hover,
+.download-button:hover {
+  border-color: rgba(255, 209, 102, 0.5);
+  background: rgba(255, 209, 102, 0.11);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   LIGHTBOX
+   ============================================= */
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
+  padding: 24px;
+  background: rgba(4, 3, 5, 0.9);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.image-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 148px);
+  border-radius: 6px;
+  object-fit: contain;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.55);
+}
+
+.lightbox-title {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.lightbox-close {
+  justify-self: end;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: var(--text);
+  background: rgba(255, 248, 235, 0.08);
+  cursor: pointer;
+}
+
+/* =============================================
+   RESPONSIVE — wallpapers
+   ============================================= */
+
+@media (max-width: 860px) {
+  .wallpaper-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .wallpapers-section {
+    padding-inline: 18px;
+  }
+
+  .wallpaper-toolbar {
+    justify-content: stretch;
+    margin-top: -2px;
+  }
+
+  .wallpaper-format-tabs {
+    width: 100%;
+  }
+
+  .wallpaper-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-content {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .card-content button,
+  .download-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .wallpapers-section {
+    padding: calc(var(--header-height) + 34px) 14px 64px;
+  }
+
+  .wallpaper-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .wallpapers-section[data-active-format="mobile"] .wallpaper-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wallpaper-open-button {
+    inset: 10px;
+  }
+
+  .wallpaper-card--desktop .wallpaper-open-button,
+  .wallpaper-card--mobile .wallpaper-open-button {
+    inset: 12px;
+  }
+
+  .card-content {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .card-content h2,
+  .card-content h3 {
+    font-size: 0.98rem;
+  }
+
+  .card-content button,
+  .download-button {
+    width: 100%;
+  }
+
+  .image-lightbox {
+    padding: 14px;
+  }
+
+  .lightbox-image {
+    max-width: calc(100vw - 28px);
+    max-height: calc(100svh - 138px);
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .section-heading h1,
+  .section-heading h2 {
+    font-size: clamp(2.4rem, 15vw, 4rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .wallpapers-section {
+    padding-inline: 10px;
+  }
+}
