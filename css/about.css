@@ -568,7 +568,6 @@
 .twitch-feature {
   transition:
     opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 620ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -590,6 +589,7 @@
   --slide-x: -110vw;
   position: relative;
   isolation: isolate;
+  contain: layout style;
   width: min(760px, 100%);
   margin-inline: auto;
   border: 1px solid var(--line);
@@ -602,11 +602,10 @@
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(12px);
   opacity: calc(0.18 + (var(--reveal) * 0.82));
-  filter: saturate(calc(0.84 + (var(--reveal) * 0.22)));
   transform:
     translateX(var(--slide-x))
     scale(calc(0.96 + (var(--reveal) * 0.04)));
-  will-change: opacity, filter, transform;
+  will-change: opacity, transform;
 }
 
 .instagram-feature::before {
@@ -625,7 +624,6 @@
 .instagram-feature > * {
   opacity: calc(0.35 + (var(--reveal) * 0.65));
   transform: translateX(calc((1 - var(--reveal)) * -12px));
-  will-change: opacity, transform;
 }
 
 .instagram-feature .feature-list li {
@@ -688,9 +686,10 @@
 
 .tiktok-feature {
   --reveal: 0;
-  --slide-x: -110vw;
+  --slide-x: 110vw;
   position: relative;
   isolation: isolate;
+  contain: layout style;
   overflow: hidden;
   width: min(760px, 100%);
   margin-inline: auto;
@@ -705,13 +704,11 @@
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.34),
     inset 0 0 36px rgba(125, 249, 255, 0.035);
-  backdrop-filter: blur(14px);
   opacity: calc(0.18 + (var(--reveal) * 0.82));
-  filter: saturate(calc(0.86 + (var(--reveal) * 0.3))) contrast(calc(0.92 + (var(--reveal) * 0.08)));
   transform:
     translateX(var(--slide-x))
     scale(calc(0.96 + (var(--reveal) * 0.04)));
-  will-change: opacity, filter, transform;
+  will-change: opacity, transform;
 }
 
 .tiktok-feature::before {
@@ -754,8 +751,7 @@
 
 .tiktok-feature > *:not(.tiktok-particles) {
   opacity: calc(0.35 + (var(--reveal) * 0.65));
-  transform: translateX(calc((1 - var(--reveal)) * -14px));
-  will-change: opacity, transform;
+  transform: translateX(calc((1 - var(--reveal)) * 14px));
 }
 
 .tiktok-title {
@@ -848,6 +844,7 @@
   --slide-x: -110vw;
   position: relative;
   isolation: isolate;
+  contain: layout style;
   overflow: hidden;
   width: min(760px, 100%);
   margin-inline: auto;
@@ -857,14 +854,17 @@
   transform:
     translateX(var(--slide-x))
     scale(calc(0.96 + (var(--reveal) * 0.04)));
-  will-change: opacity, filter, transform;
+  will-change: opacity, transform;
 }
 
-.youtube-feature > *:not(.youtube-depth),
-.twitch-feature > *:not(.twitch-pulse) {
+.youtube-feature > *:not(.youtube-depth) {
   opacity: calc(0.35 + (var(--reveal) * 0.65));
   transform: translateX(calc((1 - var(--reveal)) * -14px));
-  will-change: opacity, transform;
+}
+
+.twitch-feature > *:not(.twitch-pulse) {
+  opacity: calc(0.35 + (var(--reveal) * 0.65));
+  transform: translateX(calc((1 - var(--reveal)) * 14px));
 }
 
 .youtube-feature {
@@ -877,8 +877,6 @@
   box-shadow:
     0 32px 90px rgba(0, 0, 0, 0.36),
     inset 0 0 42px rgba(255, 71, 87, 0.035);
-  filter: saturate(calc(0.86 + (var(--reveal) * 0.24))) contrast(calc(0.94 + (var(--reveal) * 0.08)));
-  backdrop-filter: blur(14px);
 }
 
 .youtube-feature::before {
@@ -999,6 +997,7 @@
    ============================================= */
 
 .twitch-feature {
+  --slide-x: 110vw;
   border: 1px solid rgba(166, 112, 255, 0.2);
   background:
     radial-gradient(circle at 80% 20%, rgba(166, 112, 255, 0.18), transparent 32%),
@@ -1008,8 +1007,6 @@
   box-shadow:
     0 32px 90px rgba(0, 0, 0, 0.35),
     inset 0 0 42px rgba(166, 112, 255, 0.04);
-  filter: saturate(calc(0.86 + (var(--reveal) * 0.26)));
-  backdrop-filter: blur(14px);
 }
 
 .twitch-feature::before {

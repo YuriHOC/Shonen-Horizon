@@ -26,8 +26,12 @@ function getCurrentPage() {
     return "sobre";
   }
 
+  if (page === "noticias.html") {
+    return "noticias";
+  }
+
   if (page.startsWith("noticia-")) {
-    return "home";
+    return "noticias";
   }
 
   return "home";
@@ -170,38 +174,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-function updateHeroLogoScroll() {
-  if (!heroLogo) {
-    return;
-  }
-
-  const scrollProgress = Math.min(window.scrollY / 320, 1);
-  document.documentElement.style.setProperty("--hero-logo-scroll", scrollProgress.toFixed(3));
-}
-
-function updateTopicDividers() {
-  topicSections.forEach((section) => {
-    const divider = section.querySelector(".topic-divider");
-
-    if (!divider) {
-      return;
-    }
-
-    const rect = divider.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-height"));
-    const fadeIn = clamp((viewportHeight - rect.top) / 180, 0, 1);
-    const fadeOut = clamp((rect.bottom - headerHeight) / 180, 0, 1);
-    const opacity = fadeIn * fadeOut;
-    const drift = (1 - opacity) * -8;
-
-    divider.style.setProperty("--divider-opacity", opacity.toFixed(3));
-    divider.style.setProperty("--divider-drift", `${drift.toFixed(2)}px`);
-    section.classList.remove("is-topic-fixed");
-    divider.classList.remove("is-fixed", "is-released");
-  });
-}
-
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
@@ -210,36 +182,89 @@ function smoothStep(value) {
   return value * value * (3 - (2 * value));
 }
 
+// Valores cacheados — lidos uma vez e atualizados só no resize
+let vpHeight = window.innerHeight;
+let hdrHeight = parseFloat(
+  getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+) || 76;
+
+function updateHeroLogoScroll() {
+  if (!heroLogo) return;
+  const progress = Math.min(window.scrollY / 320, 1);
+  document.documentElement.style.setProperty("--hero-logo-scroll", progress.toFixed(3));
+}
+
+function updateTopicDividers() {
+  topicSections.forEach((section) => {
+    const divider = section.querySelector(".topic-divider");
+    if (!divider) return;
+
+    const rect    = divider.getBoundingClientRect();
+    const fadeIn  = clamp((vpHeight - rect.top)    / 180, 0, 1);
+    const fadeOut = clamp((rect.bottom - hdrHeight) / 180, 0, 1);
+    const opacity = fadeIn * fadeOut;
+
+    divider.style.setProperty("--divider-opacity", opacity.toFixed(3));
+    divider.style.setProperty("--divider-drift", `${((1 - opacity) * -8).toFixed(2)}px`);
+    section.classList.remove("is-topic-fixed");
+    divider.classList.remove("is-fixed", "is-released");
+  });
+}
+
 function updateRevealCards() {
   revealCards.forEach((card) => {
-    const rect = card.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const enterStart = viewportHeight * 0.84;
-    const enterEnd = viewportHeight * 0.46;
-    const exitStart = -rect.height * 0.68;
-    const exitEnd = -rect.height * 1.08;
+    const rect       = card.getBoundingClientRect();
+    const enterStart = vpHeight * 0.84;
+    const enterEnd   = vpHeight * 0.46;
+    const exitStart  = -rect.height * 0.68;
+    const exitEnd    = -rect.height * 1.08;
 
-    const enterProgress = smoothStep(clamp((enterStart - rect.top) / (enterStart - enterEnd), 0, 1));
-    const exitProgress = smoothStep(clamp((exitStart - rect.top) / (exitStart - exitEnd), 0, 1));
+    const enterProgress  = smoothStep(clamp((enterStart - rect.top) / (enterStart - enterEnd), 0, 1));
+    const exitProgress   = smoothStep(clamp((exitStart  - rect.top) / (exitStart  - exitEnd),  0, 1));
     const revealProgress = enterProgress * (1 - exitProgress);
+    const dir = (card.classList.contains("tiktok-feature") || card.classList.contains("twitch-feature")) ? 1 : -1;
     const slideX = enterProgress < 1
-      ? -110 + (enterProgress * 110)
-      : exitProgress * 110;
+      ? dir * (110 - enterProgress * 110)
+      : -dir * exitProgress * 110;
 
-    card.style.setProperty("--reveal", revealProgress.toFixed(3));
+    card.style.setProperty("--reveal",  revealProgress.toFixed(3));
     card.style.setProperty("--slide-x", `${slideX.toFixed(2)}vw`);
   });
 }
 
-// Implementação futura: substituir por roteamento, filtros e download real.
-// Área futura: conectar cards a arquivos reais em assets/images.
+// Um único RAF por frame — elimina trabalho duplicado entre eventos de scroll
+let scrollTicking = false;
+
+function runScrollUpdates() {
+  updateHeroLogoScroll();
+  updateTopicDividers();
+  updateRevealCards();
+  scrollTicking = false;
+}
+
+function onScroll() {
+  if (!scrollTicking) {
+    requestAnimationFrame(runScrollUpdates);
+    scrollTicking = true;
+  }
+}
+
+// Debounce no resize — atualiza cache e recalcula uma vez após o redimensionamento parar
+let resizeTimer;
+
+function onResize() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    vpHeight  = window.innerHeight;
+    hdrHeight = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+    ) || 76;
+    runScrollUpdates();
+  }, 120);
+}
+
 window.addEventListener("load", setActiveLink);
 window.addEventListener("load", () => setWallpaperFormat(wallpaperSection?.dataset.activeFormat || "desktop"));
-window.addEventListener("load", updateHeroLogoScroll);
-window.addEventListener("load", updateTopicDividers);
-window.addEventListener("load", updateRevealCards);
-window.addEventListener("scroll", updateHeroLogoScroll, { passive: true });
-window.addEventListener("scroll", updateTopicDividers, { passive: true });
-window.addEventListener("scroll", updateRevealCards, { passive: true });
-window.addEventListener("resize", updateTopicDividers);
-window.addEventListener("resize", updateRevealCards);
+window.addEventListener("load", runScrollUpdates);
+window.addEventListener("scroll", onScroll, { passive: true });
+window.addEventListener("resize", onResize);

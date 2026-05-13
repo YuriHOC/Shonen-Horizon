@@ -72,6 +72,16 @@
   background-size: cover;
 }
 
+/* Artigos gerados automaticamente pelos agentes — usa imagem via CSS var */
+.article-hero--generated {
+  background:
+    linear-gradient(180deg, rgba(8, 7, 9, 0.18), rgba(8, 7, 9, 0.96)),
+    linear-gradient(90deg, rgba(8, 7, 9, 0.96), rgba(8, 7, 9, 0.44)),
+    var(--article-hero-bg, linear-gradient(135deg, #0d0a1a 0%, #0a1628 50%, #0d0a1a 100%));
+  background-position: center;
+  background-size: cover;
+}
+
 .article-hero::after {
   position: absolute;
   inset: 0;
