@@ -329,10 +329,11 @@
   min-height: 320px;
   padding-top: calc(var(--header-height) + 64px);
   padding-bottom: 64px;
-  background:
-    linear-gradient(90deg, rgba(8, 7, 9, 0.97) 0%, rgba(8, 7, 9, 0.82) 100%),
-    radial-gradient(circle at 80% 40%, rgba(255, 140, 43, 0.22), transparent 28rem),
-    radial-gradient(circle at 20% 70%, rgba(120, 220, 202, 0.14), transparent 22rem);
+  background: none;
+}
+
+.noticias-hero::after {
+  display: none;
 }
 
 /* =============================================

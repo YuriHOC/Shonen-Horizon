@@ -426,3 +426,62 @@
     font-size: 0.7rem;
   }
 }
+
+/* =============================================
+   SITE FOOTER — rodapé global, todas as páginas
+   ============================================= */
+
+.site-footer {
+  border-top: 1px solid rgba(255, 248, 235, 0.08);
+  padding: 44px max(24px, calc((100vw - 1180px) / 2));
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 209, 102, 0.05), transparent 50%),
+    rgba(0, 0, 0, 0.2);
+}
+
+.site-footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px 48px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.site-footer-nav {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-footer-nav a {
+  color: rgba(255, 248, 235, 0.5);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.site-footer-nav a:hover {
+  color: var(--accent);
+}
+
+.site-footer-copy {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 248, 235, 0.06);
+  color: rgba(255, 248, 235, 0.25);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .site-footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer-nav {
+    justify-content: flex-start;
+  }
+}
