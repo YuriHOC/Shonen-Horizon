@@ -357,17 +357,34 @@
 @media (max-width: 720px) {
   .blog-hero {
     min-height: 100svh;
-    padding: calc(var(--header-height) + 42px) 18px 72px;
+    padding: calc(var(--header-height) + 48px) 20px 80px;
     background:
-      linear-gradient(180deg, rgba(8, 7, 9, 0.74) 0%, rgba(8, 7, 9, 0.94) 60%, rgba(8, 7, 9, 1) 100%),
-      radial-gradient(circle at 72% 35%, rgba(255, 140, 43, 0.2), transparent 24rem),
+      linear-gradient(180deg, rgba(8, 7, 9, 0.72) 0%, rgba(8, 7, 9, 0.88) 55%, rgba(8, 7, 9, 1) 100%),
+      radial-gradient(circle at 60% 30%, rgba(255, 140, 43, 0.22), transparent 20rem),
       url("../assets/img/wallp/Luffy.png");
-    background-position: center, center, center top;
-    background-size: cover;
+    background-position: center, center, center center;
+    background-size: cover, cover, cover;
   }
 
   .blog-hero h1 {
-    font-size: clamp(2.6rem, 14vw, 4.5rem);
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
+    line-height: 1.08;
+  }
+
+  .blog-hero p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .blog-hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .blog-hero-actions .btn-primary,
+  .blog-hero-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
   }
 
   .blog-section {

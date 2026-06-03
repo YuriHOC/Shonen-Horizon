@@ -96,6 +96,14 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.wallpapers-section[data-active-format="desktop"] .wallpaper-card--mobile {
+  display: none;
+}
+
+.wallpapers-section[data-active-format="mobile"] .wallpaper-card--desktop {
+  display: none;
+}
+
 .wallpaper-card {
   overflow: hidden;
   border: 1px solid var(--line);

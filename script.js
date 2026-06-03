@@ -10,6 +10,8 @@ const wallpaperFormatTabs = document.querySelectorAll("[data-wallpaper-filter]")
 const wallpaperCards = document.querySelectorAll("[data-wallpaper-format]");
 const socialFab = document.querySelector(".social-fab");
 const socialFabButton = document.querySelector(".social-fab-button");
+const navToggle = document.querySelector(".nav-toggle");
+const siteHeader = document.querySelector(".site-header");
 const heroLogo = document.querySelector(".hero-logo-wrap");
 const topicSections = document.querySelectorAll(".topic-section");
 const revealCards = document.querySelectorAll(".scroll-reveal-card");
@@ -136,12 +138,6 @@ function setWallpaperFormat(format) {
     tab.classList.toggle("is-active", isActive);
     tab.setAttribute("aria-pressed", String(isActive));
   });
-
-  wallpaperCards.forEach((card) => {
-    const shouldShow = card.dataset.wallpaperFormat === format;
-
-    card.hidden = !shouldShow;
-  });
 }
 
 wallpaperFormatTabs.forEach((tab) => {
@@ -156,19 +152,23 @@ futureLinks.forEach((link) => {
   });
 });
 
+navToggle?.addEventListener("click", () => {
+  const isOpen = siteHeader.classList.toggle("nav-open");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
 socialFabButton?.addEventListener("click", () => {
   const isOpen = socialFab?.classList.toggle("is-open") || false;
   socialFabButton.setAttribute("aria-expanded", String(isOpen));
 });
 
 document.addEventListener("click", (event) => {
-  if (!socialFab || !socialFabButton) {
-    return;
+  if (navToggle && siteHeader && !siteHeader.contains(event.target)) {
+    siteHeader.classList.remove("nav-open");
+    navToggle.setAttribute("aria-expanded", "false");
   }
 
-  const clickedInsideSocialMenu = socialFab.contains(event.target);
-
-  if (!clickedInsideSocialMenu) {
+  if (socialFab && socialFabButton && !socialFab.contains(event.target)) {
     socialFab.classList.remove("is-open");
     socialFabButton.setAttribute("aria-expanded", "false");
   }

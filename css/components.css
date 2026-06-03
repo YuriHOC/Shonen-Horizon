@@ -148,6 +148,12 @@
     display: inline;
     margin-left: 4px;
   }
+
+  .blog-badge {
+    width: auto;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 @media (max-width: 380px) {

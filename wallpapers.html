@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -24,6 +24,7 @@
           <span class="brand-name">Shonen Horizon</span>
         </a>
 
+        <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav class="main-nav" aria-label="Menu">
           <!-- Área futura: novos itens de menu podem entrar aqui. -->
           <a class="nav-link" href="index.html" data-page="home">Home</a>
@@ -53,7 +54,7 @@
                 data-wallpaper-filter="desktop"
               >
                 Desktop
-                <span>3</span>
+                <span><!-- DESKTOP:COUNT -->9<!-- /DESKTOP:COUNT --></span>
               </button>
               <button
                 class="wallpaper-format-tab"
@@ -62,12 +63,88 @@
                 data-wallpaper-filter="mobile"
               >
                 Mobile
-                <span>4</span>
+                <span><!-- MOBILE:COUNT -->4<!-- /MOBILE:COUNT --></span>
               </button>
             </div>
           </div>
 
           <div class="wallpaper-grid" aria-label="Wallpapers em destaque">
+            <!-- WALLPAPERS:GRID:START -->
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/GohanPC.png"
+                  data-image-title="Gohan"
+                  aria-label="Visualizar wallpaper Gohan"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/GohanPC.png"
+                    alt="Wallpaper Gohan"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Gohan</h2>
+                <a class="download-button" href="assets/img/wallp/GohanPC.png" download="GohanPC.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/Katsuki Bakugou.png"
+                  data-image-title="Katsuki Bakugou"
+                  aria-label="Visualizar wallpaper Katsuki Bakugou"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/Katsuki Bakugou.png"
+                    alt="Wallpaper Katsuki Bakugou"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Katsuki Bakugou</h2>
+                <a class="download-button" href="assets/img/wallp/Katsuki Bakugou.png" download="Katsuki Bakugou.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/FreezaPC.png"
+                  data-image-title="Freeza"
+                  aria-label="Visualizar wallpaper Freeza"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/FreezaPC.png"
+                    alt="Wallpaper Freeza"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Freeza</h2>
+                <a class="download-button" href="assets/img/wallp/FreezaPC.png" download="FreezaPC.png">Download</a>
+              </div>
+            </article>
+
             <article
               class="wallpaper-card wallpaper-card--desktop"
               data-wallpaper-format="desktop"
@@ -83,38 +160,13 @@
                   <img
                     class="wallpaper-image"
                     src="assets/img/wallp/NarutoAndDeku.png"
-                    alt="Wallpaper Naruto and Deku"
+                    alt="Wallpaper Naruto & Deku"
                   />
                 </button>
               </div>
               <div class="card-content">
                 <h2>Naruto & Deku</h2>
                 <a class="download-button" href="assets/img/wallp/NarutoAndDeku.png" download="NarutoAndDeku.png">Download</a>
-              </div>
-            </article>
-
-            <article
-              class="wallpaper-card wallpaper-card--desktop"
-              data-wallpaper-format="desktop"
-            >
-              <div class="wallpaper-preview wallpaper-preview-image">
-                <button
-                  class="wallpaper-open-button"
-                  type="button"
-                  data-full-image="assets/img/wallp/Kirito.png"
-                  data-image-title="Kirito"
-                  aria-label="Visualizar wallpaper Kirito"
-                >
-                  <img
-                    class="wallpaper-image"
-                    src="assets/img/wallp/Kirito.png"
-                    alt="Wallpaper Kirito"
-                  />
-                </button>
-              </div>
-              <div class="card-content">
-                <h2>Kirito</h2>
-                <a class="download-button" href="assets/img/wallp/Kirito.png" download="Kirito.png">Download</a>
               </div>
             </article>
 
@@ -144,9 +196,83 @@
             </article>
 
             <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/Katsuki Bakugou2.png"
+                  data-image-title="Katsuki Bakugou"
+                  aria-label="Visualizar wallpaper Katsuki Bakugou"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/Katsuki Bakugou2.png"
+                    alt="Wallpaper Katsuki Bakugou"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Katsuki Bakugou</h2>
+                <a class="download-button" href="assets/img/wallp/Katsuki Bakugou2.png" download="Katsuki Bakugou2.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/Majin Vegeta.png"
+                  data-image-title="Majin Vegeta"
+                  aria-label="Visualizar wallpaper Majin Vegeta"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/Majin Vegeta.png"
+                    alt="Wallpaper Majin Vegeta"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Majin Vegeta</h2>
+                <a class="download-button" href="assets/img/wallp/Majin Vegeta.png" download="Majin Vegeta.png">Download</a>
+              </div>
+            </article>
+
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/Kirito.png"
+                  data-image-title="Kirito"
+                  aria-label="Visualizar wallpaper Kirito"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/Kirito.png"
+                    alt="Wallpaper Kirito"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Kirito</h2>
+                <a class="download-button" href="assets/img/wallp/Kirito.png" download="Kirito.png">Download</a>
+              </div>
+            </article>
+
+            <article
               class="wallpaper-card wallpaper-card--mobile"
               data-wallpaper-format="mobile"
-              hidden
             >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
@@ -159,7 +285,7 @@
                   <img
                     class="wallpaper-image"
                     src="assets/img/wallp/SasukeAndVegeta.png"
-                    alt="Wallpaper Sasuke and Vegeta"
+                    alt="Wallpaper Sasuke & Vegeta"
                   />
                 </button>
               </div>
@@ -172,7 +298,6 @@
             <article
               class="wallpaper-card wallpaper-card--mobile"
               data-wallpaper-format="mobile"
-              hidden
             >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
@@ -198,7 +323,6 @@
             <article
               class="wallpaper-card wallpaper-card--mobile"
               data-wallpaper-format="mobile"
-              hidden
             >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
@@ -224,7 +348,6 @@
             <article
               class="wallpaper-card wallpaper-card--mobile"
               data-wallpaper-format="mobile"
-              hidden
             >
               <div class="wallpaper-preview wallpaper-preview-image">
                 <button
@@ -246,8 +369,34 @@
                 <a class="download-button" href="assets/img/wallp/SatoruGojou.png" download="SatoruGojou.png">Download</a>
               </div>
             </article>
-          </div>
 
+            <article
+              class="wallpaper-card wallpaper-card--desktop"
+              data-wallpaper-format="desktop"
+            >
+              <div class="wallpaper-preview wallpaper-preview-image">
+                <button
+                  class="wallpaper-open-button"
+                  type="button"
+                  data-full-image="assets/img/wallp/Broly.png"
+                  data-image-title="Broly"
+                  aria-label="Visualizar wallpaper Broly"
+                >
+                  <img
+                    class="wallpaper-image"
+                    src="assets/img/wallp/Broly.png"
+                    alt="Wallpaper Broly"
+                  />
+                </button>
+              </div>
+              <div class="card-content">
+                <h2>Broly</h2>
+                <a class="download-button" href="assets/img/wallp/Broly.png" download="Broly.png">Download</a>
+              </div>
+            </article>
+
+          <!-- WALLPAPERS:GRID:END -->
+          </div>
           <!-- Área futura: novos wallpapers podem ser adicionados seguindo este mesmo modelo. -->
         </section>
       </main>
